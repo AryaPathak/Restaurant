@@ -1,12 +1,10 @@
-
-function App() {
+import React from 'react'
+import Resto from './Componants/Basics/Resto'
+const App = () => {
   return (
-    <div>
-      Hello!!!
-      How are you ?
-      How is it...
-    </div>
-  );
+    
+    <Resto/>
+  )
 }
 
-export default App;
+export default App

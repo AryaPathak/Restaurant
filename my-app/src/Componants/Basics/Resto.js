@@ -1,24 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./style.css"
+import Menu from "./menuApi"
+import MenuCard from './MenuCard'
+
 
 const Resto = () => {
+
+    const [menuData, setMenuData] = useState(Menu);
+
+    const filterItem = (category) => {
+        const updatedlist = Menu.filter((currEle)=>{
+            return currEle.category === category;
+        })
+
+        setMenuData(updatedlist);
+    }
+
   return (
     <>
-        <div className="card-container">
-            <div className="card">
-                <div className="card-body">
-                    <span className="card-number card-circle subtle">1</span>
-                    <span className="card-author subtle">Breakfast</span>
-                    <h2 className="card-title">Maggie</h2>
-                    <span className="card-description subtle">
-                        I love maggie Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-                    </span>
-                    <div className="card-read">Read</div>
-                </div>
-                {/* <img src={image} className="card-media"></img> */}
-                <span className="card-tag subtle">Order Now</span>
+        <nav className="navbar">
+            <div className="btn-group">
+                <button className="btn-group__item" onClick={()=>filterItem("breakfast")}>
+                Breakfast</button>
+
+                <button className="btn-group__item" onClick={()=>filterItem("lunch")}>
+                Lunch</button>
+
+                <button className="btn-group__item" onClick={()=>filterItem("evening")}>
+                evening</button>
+
+                <button className="btn-group__item" onClick={()=>filterItem("dinner")}>
+                Dinner</button>
+
+                <button className="btn-group__item" onClick={()=>setMenuData(Menu)}>
+                All</button>
             </div>
-        </div>
+
+        </nav>
+        <MenuCard menuData={menuData}/>
     </>
   )
 }
